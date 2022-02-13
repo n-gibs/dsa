@@ -37,6 +37,9 @@ def helper(A, start, end):
 
 def merge_sort(A):
 
+    if len(A) <= 1:
+        return A
+
     helper(A, 0, len(A) - 1)
 
     return A
