@@ -1,6 +1,3 @@
-from heapq import merge
-
-
 def helper(A, start, end):
     if start >= end:
         return
