@@ -7,8 +7,6 @@ def lcp(input_str):
 #slate = partial solution
 def fill_blanks(idx_subproblem, slate, input_str, solutions):
 
-    def p(comment):
-        print(idx_subproblem, comment, slate, solutions)
     # Base case
     if idx_subproblem == len(input_str):
         #create string from array

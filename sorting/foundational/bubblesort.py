@@ -1,4 +1,4 @@
-arr = [123, 42, 12, 9, 400, 23, 1, 0, 21];
+arr = [123, 42, 12, 9, 400, 23, 1, 0, 21]
 
 def bubbleSort(arr):
     for i in range(0, len(arr)):
