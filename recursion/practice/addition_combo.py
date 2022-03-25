@@ -30,9 +30,10 @@ def helper(nums, idx, target, slate, results):
             count +=1
 
     #Recursive
-    #with
+    #include
     slate.append(nums[idx])
     helper(nums, idx+1, target-nums[idx], slate, results)
     slate.pop()
-    #without
+
+    #exclude
     helper(nums, idx+count, target, slate, results)
