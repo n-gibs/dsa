@@ -1,4 +1,4 @@
-from collections import deque
+# from collections import deque
 class Node:
     def __init__(self, val):
         self.left = None
@@ -24,7 +24,7 @@ root.right.right = Node(97)
 root.right.right.left = Node(93)
 
 #return as 2d array
-#[[44], [17, 8], [32, 28], [29, 88], [65, 54], [82, 76], [68, 80, 97], [93]]
+#[[44], [17, 88], [8, 32, 65, 97], [28, 54, 82, 93], [29, 76], [68, 80]]
 
 def bfs(root):
 
@@ -33,7 +33,8 @@ def bfs(root):
     if root is None: result
 
     #make queue
-    queue = deque()
+    # queue = deque()
+    queue = []
 
     #add root to queue
     queue.append(root)
@@ -44,7 +45,8 @@ def bfs(root):
         # needed for 2D array
         for _ in range(count):
 
-            node = queue.popleft()
+            # node = queue.popleft()
+            node = queue.pop(0)
 
             print("NODE: ", node.val)
             temp.append(node.val)
