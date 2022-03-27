@@ -20,29 +20,39 @@ root.right.left.right = Node(82)
 root.right.left.right.left = Node(76)
 root.right.left.right.left.left = Node(68)
 root.right.left.right.left.right = Node(80)
+#return as 2d array
+#[[44], [17, 8], [32, 28], [29, 88], [65, 54], [82, 76], [68, 80, 97], [93]]
 
 def bfs(root):
 
-    if root is None:
-        return root
+    result = []
+
+    if root is None: result
 
     #make queue
     queue = []
-     #add root to queue
+
+    #add root to queue
     queue.append(root)
 
-    result = []
-
     while queue:
-        node = queue.pop()
+        count = len(queue)
+        temp = []
 
-        if node.right:
-            queue.append(node.right)
+        # needed for 2D array
+        for _ in range(count):
 
-        if node.left:
-            queue.append(node.left)
+            node = queue.pop()
 
-        result.append(node.val)
+            temp.append(node.val)
+
+            if node.right:
+                queue.append(node.right)
+
+            if node.left:
+                queue.append(node.left)
+
+        result.append(temp)
 
     return result
 
