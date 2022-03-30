@@ -56,17 +56,11 @@ def bfs(root):
             if node.right:
                 queue.append(node.right)
 
-
         if flip:
             temp.reverse()
         result.append(temp)
-        #     result.append(temp.reverse())
-
-        # else:
-        #     result.append(temp)
 
         flip = not flip
-
 
     return result
 
