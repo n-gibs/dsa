@@ -26,15 +26,15 @@ root.right.right.left = Node(93)
 
 def pathsum(root, target):
 
-    hasSum = [False]
+    hasSum = False
 
     def helper(node, current_sum):
-
-        if hasSum[0]: return
+        nonlocal hasSum
+        if hasSum: return
 
         if (node.left is None and node.right is None):
             if node.val is current_sum:
-                hasSum[0] = True
+                hasSum = True
             return
 
         current_sum-= node.val
@@ -44,6 +44,6 @@ def pathsum(root, target):
             helper(node.right, current_sum)
 
     helper(root, target)
-    return hasSum[0]
+    return hasSum
 
 print(pathsum(root, 69))

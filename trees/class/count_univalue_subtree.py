@@ -77,15 +77,15 @@ root.left.right.left.right = Node(5)
 
 def count_univalue(root):
 
-    uvCount = [0]
+    uvCount = 0
 
     if root is None:
-        return uvCount[0]
+        return uvCount
 
     def helper(node: Node):
-
+        nonlocal uvCount
         if node.left is None and node.right is None:
-            uvCount[0]+=1
+            uvCount+=1
             return True
 
         uvalFlag = True
@@ -97,11 +97,11 @@ def count_univalue(root):
             uvalFlag = helper(node.right) and node.val == node.right.val and uvalFlag
 
         #operations happening affer recursive case
-        if uvalFlag: uvCount[0] +=1
+        if uvalFlag: uvCount +=1
 
         return uvalFlag
 
     helper(root)
-    return uvCount[0]
+    return uvCount
 
 print(count_univalue(root))
