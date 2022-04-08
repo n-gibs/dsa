@@ -34,7 +34,7 @@ def bfs(root):
     result = []
 
     while queue:
-        node = queue.pop()
+        node = queue.pop(0)
 
         if node.right:
             queue.append(node.right)

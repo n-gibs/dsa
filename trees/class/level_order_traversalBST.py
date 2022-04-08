@@ -34,10 +34,7 @@ def bfs(root):
 
     #make queue
     # queue = deque()
-    queue = []
-
-    #add root to queue
-    queue.append(root)
+    queue = [root]
 
     while queue:
         count = len(queue)

@@ -40,50 +40,25 @@ def bsthelper(input,start,end):
     return rootNode
 
 
-def sorted_list_to_bst(head):
-    """
-    Args:
-     head(LinkedListNode_int32)
-    Returns:
-     BinaryTreeNode_int32
-    """
-    # Write your code here.
-
-    list_size = 0
-    node = head
-
-    while node != None:
-        list_size += 1
-        node = node.next
-
-
-    root = helper(head, list_size)
-
-    return root
-
-
-def helper(head, list_size):
-    # Base Case
-    if head == None or list_size == 0:
-        return None
-
-    # Recursive Case
-    mid = list_size // 2
-    node = head
-
-    for _ in range(mid-1):
-        node = node.next
-
-    root_node = node.next if node.next else node
-    head_right = root_node.next
-    node.next = None
-
-    root = BinaryTreeNode(root_node.value)
-
-    root_left = helper(head, mid)
-    root_right = helper(head_right, list_size - mid - 1)
-
-    root.left = root_left
-    root.right = root_right
-
+def sortedListToBST(self, head):
+    if not head:
+        return
+    if not head.next:
+        return BinaryTreeNode(head.val)
+    # here we get the middle point,
+    # even case, like '1234', slow points to '2',
+    # '3' is root, '12' belongs to left, '4' is right
+    # odd case, like '12345', slow points to '2', '12'
+    # belongs to left, '3' is root, '45' belongs to right
+    slow, fast = head, head.next.next
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+    # tmp points to root
+    tmp = slow.next
+    # cut down the left child
+    slow.next = None
+    root = BinaryTreeNode(tmp.val)
+    root.left = self.sortedListToBST(head)
+    root.right = self.sortedListToBST(tmp.next)
     return root

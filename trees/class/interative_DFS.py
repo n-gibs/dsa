@@ -22,7 +22,7 @@ root.right.left.right.left.right = Node(80)
 root.right.right = Node(97)
 root.right.right.left = Node(93)
 
-def interativeTraversal(root):
+def iterativeTraversal(root):
 
     result = []
     stack = []
