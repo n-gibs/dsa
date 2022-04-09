@@ -1,28 +1,3 @@
-# def is_bst(root):
-#     """
-#     Args:
-#      root(BinaryTreeNode_int32)
-#     Returns:
-#      bool
-#     """
-#     # Write your code here.
-#     if root is None:
-#         return True
-#     stack = []
-#     prev = None
-#     while True:
-#         while root:
-#             stack.append(root)
-#             root = root.left
-#         if len(stack) == 0:
-#             break
-#         root = stack.pop()
-#         if prev and prev.value > root.value:
-#             return False
-#         prev = root
-#         root = root.right
-#     return True
-
 def is_bst(root):
     """
     Args:
@@ -52,6 +27,7 @@ def is_bst(root):
 
     return True
 
+#find max node in sub tree
 def find_max(node):
     if not node:
         return None
