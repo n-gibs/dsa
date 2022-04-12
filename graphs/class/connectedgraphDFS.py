@@ -18,14 +18,8 @@ def connected_components(n, edges):
         adj_list[dst].append(src)
 
     visited = [-1] * n
-    components = 0
-    for i in range(n):
-        if visited[i] == -1: #unvisited
-            #traverse
-            dfs(i) #updates visited list
-            components += 1
 
-    #recursive set approach
+        #recursive set approach
     def dfs(node):
         visited[node] = 1
 
@@ -33,5 +27,11 @@ def connected_components(n, edges):
             if visited[neighbor] == -1:
                 dfs(neighbor)
 
+    components = 0
+    for i in range(n):
+        if visited[i] == -1: #unvisited
+            #traverse
+            dfs(i) #updates visited list
+            components += 1
 
     return components

@@ -10,6 +10,8 @@
     #code up base BFS/DFS
         #then add extension
 
+#n is number of nodes labeled 0 to n-1
+#list of edges [[0,1], [1,3], [3.4]]
 def connected_components(n, edges):
     #build graph
     #list of lists
@@ -29,12 +31,6 @@ def connected_components(n, edges):
         adj_list[dst].append(src)
 
     visited = [-1] * n
-    components = 0
-    for i in range(n):
-        if visited[i] == -1: #unvisited
-            #traverse
-            bfs(i) #updates visited list
-            components += 1
 
     def bfs(node):
 
@@ -45,8 +41,14 @@ def connected_components(n, edges):
             curr = queue.pop(0)
             for neighbor in adj_list[curr]:
                 if visited[neighbor] == -1:
-                    visited[neighbor] == 1
+                    visited[neighbor] = 1
                     queue.append(neighbor)
 
+    components = 0
+    for i in range(n):
+        if visited[i] == -1: #unvisited
+            #traverse
+            bfs(i) #updates visited list
+            components += 1
 
     return components
