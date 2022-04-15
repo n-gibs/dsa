@@ -37,31 +37,33 @@ def valid_tree(n, edges):
     visited = [-1] * n
     parents = [-1] * n
         #parent[a] = b
+    def bfs(node):
+        queue = [node]
+        visited[node] = 1
+
+        while queue:
+            curr = queue.pop(0)
+
+            for neighbor in adj_list[curr]:
+
+                if visited[neighbor] == -1:
+                    visited[neighbor] = 1
+                    parents[node]= curr
+                    queue.append(neighbor)
+
+                else:
+                     # seeing something ive seen before
+                    if parents[curr] != neighbor: #if neigbor is parent
+                        return False
+                return True
+
     components = 0
     for i in range(n):
         if visited[i] == -1: #unvisited
             #traverse
             if components == 1: return False
-            if bfs(i):
+            if not bfs(i):
                 return False #if there was cycle #updates visited list
             components += 1
-
-    def bfs(node):
-
-        queue = [node]
-        visited[node] = 1
-        while queue:
-            curr = queue.pop(0)
-            for neighbor in adj_list[curr]:
-                if visited[neighbor] == -1:
-                    visited[neighbor] == 1
-                    parents[node]= curr
-                    queue.append(neighbor)
-                else: # seeing something ive seen before
-                    if parents[curr] == neighbor: #if neigbor is parent
-                        continue
-                    else:
-                        return False
-                return True
 
     return True
