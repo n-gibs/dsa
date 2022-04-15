@@ -19,46 +19,65 @@
         #yes
     #code base BFS, then extension (getting neighbor is diferernt)
 
-def num_islands(map):
-    rows = len(map)
-    cols = len(map[0])
+from collections import deque
 
-    #2d arr of -1
-    visited = [([-1] * cols) for _ in range(rows)]
-    #could create set of corrdiate pairs
-    islands = 0
-    for i in rows:
-        for j in cols:
-            if visited[i][j] == -1 and map[i][j] == 1:
+def count_islands(matrix):
+
+    numrows = len(matrix)
+    numcols = len(matrix[0])
+
+    num_islands = 0
+
+    total = 0
+    for row in range(numrows):
+        total += sum(matrix[row])
+    if total == numrows * numcols: return 1
+
+    def get_neighbors(row,column):
+            neighbors = []
+            up1 = row -1
+            if up1 >= 0 and matrix[up1][column] == 1:
+                neighbors.append((up1,column))
+
+            down1 = row+1
+            if down1 < numrows and matrix[down1][column] == 1:
+                neighbors.append((down1,column))
+
+            right1 = column +1
+            if right1 < numcols and matrix[row][right1] == 1:
+                neighbors.append((row,right1))
+
+            left1 = column -1
+            if left1 >= 0 and matrix[row][left1] == 1:
+                neighbors.append((row,left1))
+
+            if up1 >= 0 and left1 >= 0 and matrix[up1][left1] == 1:
+                neighbors.append((up1,left1))
+            if up1 >= 0 and right1 < numcols and matrix[up1][right1] == 1:
+                neighbors.append((up1,right1))
+            if down1 < numrows and left1 >= 0 and matrix[down1][left1] == 1:
+                neighbors.append((down1,left1))
+            if down1 < numrows and right1 < numcols and matrix[down1][right1] == 1:
+                neighbors.append((down1,right1))
+            return neighbors
+
+    def bfs(row,col):
+        q = deque()
+        q.append((row,col))
+        matrix[row][col] = 0
+
+        while q:
+            (curr_row,curr_col) = q.popleft()
+            neighbors = get_neighbors(curr_row,curr_col)
+            for (n_r,n_c) in neighbors:
+                if matrix[n_r][n_c] == 1:
+                    q.append((n_r,n_c))
+                    matrix[n_r][n_c] = 0
+
+    for i in range(numrows):
+        for j in range(numcols):
+            if matrix[i][j] == 1:
                 bfs(i,j)
-                islands+=1
+                num_islands += 1
 
-
-    def bfs(i, j):
-        queue = [[i, j]]
-        visited[i][j] = 1
-
-        while queue:
-            for n_i, n_j in get_neighbors(i, j):
-                if visited[n_i][n_j] == -1:
-                    visited[n_i][n_j] == 1
-                    queue.append[[n_i, n_j]]
-
-    def get_neighbors(i, j):
-        #up
-        neighbors = []
-        if i -1 >= 0 and map[i-1][j] == 1:
-            neighbors.append((i-1, j))
-        #down
-        if i+1 < rows and map[i+1][j]:
-            neighbors.append((i+1, j))
-        #left
-        if j-1 >= 0 and map[i][j-1]:
-            neighbors.append((i, j-1))
-        #right
-        if j+1 < cols and map[i][j+1]:
-            neighbors.append((i, j+1))
-
-        return neighbors
-
-    return islands
+    return num_islands
