@@ -42,7 +42,7 @@ def can_be_completed(n, a, b):
     #build the graph
     visited = [-1] * n
 
-    adj_list = [[] for i in range(n)]
+    adj_list = [[] for _ in range(n)]
 
     for i in range(len(a)):
         adj_list[a[i]].append(b[i])
