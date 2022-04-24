@@ -1,5 +1,5 @@
 def fib_dp(n):
-
+    #o(1) space
     table = [None]*3
 
     table[0] = 0
