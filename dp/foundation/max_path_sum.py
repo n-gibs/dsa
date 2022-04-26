@@ -1,3 +1,7 @@
+#https://www.geeksforgeeks.org/maximum-path-sum-matrix/
+
+# Given a matrix of N * M. Find the maximum path sum in matrix. The maximum path is sum of all elements from first row to last row where you are allowed to move only down or diagonally to left or right. You can start from any element in first row.
+
 def max_sum(grid):
     m = len(grid)
     n = len(grid(0))

@@ -1,5 +1,4 @@
-from re import L
-
+#116.
 
 def partition(nums):
     all_sum = sum(nums)
@@ -28,6 +27,7 @@ def partition(nums):
             if s >= nums[i]:
                 table[i][s] = table[i+1][s-nums[i]]
 
+            #exclude/include
             table[i][s] = table[i][s] or table[i+1][s]
 
     return table[0][half]

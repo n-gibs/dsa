@@ -1,4 +1,16 @@
 #76. edit distance
+
+#https://leetcode.com/problems/edit-distance/
+
+# Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
+
+# You have the following three operations permitted on a word:
+
+#     Insert a character
+#     Delete a character
+#     Replace a character
+
+
 def min_distance(w1, w2):
     m = len(w1)
     n = len(w2)
