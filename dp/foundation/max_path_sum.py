@@ -4,7 +4,7 @@
 
 def max_sum(grid):
     m = len(grid)
-    n = len(grid(0))
+    n = len(grid[0])
     table = [[[]*m] * n]
 
     table[0][0] = grid[0][0]
